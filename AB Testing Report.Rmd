@@ -2,7 +2,9 @@
 title: "A/B Testing Project"
 author: "Prasun Srivastava"
 date: "2 December 2016"
-output: pdf_document
+output: 
+  html_document:
+    keep_md: true
 ---
 
 ```{r setup, include=FALSE}
@@ -19,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * Evaluation Metrics:
     1. Gross Conversion - Since we are interested in evaluating the change in the number of users enrolling in the course after a question is being asked about the time commitment, this metric should be affected. As per the hypothesis, it is expected that the gross conversion will go down after the launch of the experiment since users will have a better understanding of time commitment.
-    2. Net Conversion - This metric measures how many users continue past the free trial period. Since, we expect the enrollment to be affected by the question about the time commitment, this metric should also be affected. As per the hypothesis, it is expected that net conversion will go up as informing users about time commitment prior to enrolling will set an expectation beforehand.
+    2. Net Conversion - This metric measures how many users continue past the free trial period. Since, we expect the enrollment to be affected by the question about the time commitment, this metric should also be affected. The net conversion should not decrease even after this change.
 
 * Unused Metrics:
     1. Number of User-ids - This is the number of users who enroll in the free trial. Since, the experiment is going to test the effect of additional information about time commitment at the tme of enrollment, this metric is not going to have same distribution for experiment and control groups. Hence, it can not be used as an invariant metric. Also, since it has not been normalized and the number of visitors between the experiment and control groups can be different, it has not been chosen as an evaluation metric.
@@ -61,7 +63,7 @@ knitr::opts_chunk$set(echo = TRUE)
     Since, we have to evaluate both gross conversion and net conversion, we will take maximum among the two. Hence, total number of pageviews required is 685325.
 
 #### Duration vs Exposure
-* Fraction of Traffic - We will divert 100% of the traffic for the test as the change is not risky because we are providing additional information to the users in order to provide a better user experience.
+* Fraction of Traffic - We will divert 100% of the traffic for the test as the change is not risky because we are providing additional information to the users in order to provide a better user experience. Also, the experiment does not put any personal information of the users at risk and we do not collect any additional personal information. On the part of the participants, it would not cost them any money. So, there is no reason to restrict the experiment for a subset of the users.
 * Days Experiment should be run:
     + Pageviews per Day = 40000
     + Number of Days = $\frac{Total Pageviews}{Pageviews per Day}$ = 68325 / 40000 = 17.13 = 18 Days
@@ -123,6 +125,9 @@ If a student is given a review of the prerequisites, he might be better equipped
 
 #### Unit of Diversion
 User ID
+
+#### Invariant Metric
+* Number of User IDs - Since, we require equal number of participants in the experiment and control group, number of User IDs will be used as an invariant metric.
 
 #### Evaluation Metric
 * Drop out Rate after 1 month - $\frac{Number of Users who leave course after a month}{Number of Users who join the Course}$
